@@ -1,9 +1,13 @@
 package Game1;
 import java.awt.Canvas;
 public class PingPMain extends Canvas implements Runnable{
+	
+	//Main Function
 	public static void main(String [] args) {
 	new PingPMain();
 	}
+	
+	
 	//set the stand "final" size of the game
 	public static final int WIDTH = 1000;
 	public static final int HEIGHT = WIDTH * 9/16;
@@ -16,15 +20,16 @@ public class PingPMain extends Canvas implements Runnable{
 	private Paddle paddle1;
 	private Paddle paddle2; 
 	
-	public static void main(String [] args) {
-	
-	}
-	
 	//main class standard constructor function thats required
 	public PingPMain() {
 		canvasSetup();
 	}
 	
+	public static initialize() {
+		//initialize ball
+		
+		//initialize paddles
+	}
 	//function for setting the dimensions
 	public canvasSetup() {
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));

@@ -2,7 +2,7 @@ package Game1;
 
 import javax.swing.JFrame;
 public class Window {
-	public Window(JFrame title, PingPMain game) 
+	public Window(String title, PingPMain game) 
 	{ 
 	JFrame frame = new JFrame();
 	// creates object of Window Jframe 
@@ -14,9 +14,9 @@ public class Window {
 	//putting the running app in the frame
 	frame.pack();
 	// pack all of the components with a "perfect fit"
-	frame.setLocationRelativeTo(null)
+	frame.setLocationRelativeTo(null);
 	// center the game to the screen
-	frame.setVisible(True);
+	frame.setVisible(true);
 	// sets the window frame as visible
 	
 	game.start();

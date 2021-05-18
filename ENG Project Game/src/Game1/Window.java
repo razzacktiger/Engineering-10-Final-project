@@ -1,6 +1,10 @@
 package Game1;
 
+import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.ImageIcon;
+import javax.swing.JColorChooser;
+
 public class Window {
 	public Window(String title, PingPMain game) 
 	{ 
@@ -19,6 +23,11 @@ public class Window {
 	frame.setVisible(true);
 	// sets the window frame as visible
 	
+	//frame.getContentPane().setBackground(new Color(30, 54, 200));
+	//sets the backround color to bluish green
+	
+	frame.setTitle("JFrame is Da Boss"); 
+	// sets title of frame
 	game.start();
 	//start the game
 	}

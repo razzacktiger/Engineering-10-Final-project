@@ -12,7 +12,7 @@ import java.awt.image.BufferStrategy;
 /**
  * class that manages the game, drawing and updating physics
  * 
- * @author Zayed
+ * Orignal coder Zayed, Modified by Haroon and Hunter
  *
  */
 public class Game extends Canvas implements Runnable {

@@ -36,7 +36,7 @@ public class Game extends Canvas implements Runnable {
 	private Paddle rightPaddle;
 
 	public MainMenu menu;//Main Menu object
-	public EndMenu endMenu;// End Menu object
+	public EndMenu endMenu;// This is End Menu object
 
 	/**
 	 * constructor

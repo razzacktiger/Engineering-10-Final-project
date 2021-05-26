@@ -121,7 +121,9 @@ public class EndMenu extends MouseAdapter {
 		    
 		else if (quitBtn.contains(p))
 			System.exit(0);
-
+		
+			rightPaddle.setScore(0);
+			leftPaddle.setScore(0);
 	}
 
 	@Override

@@ -20,7 +20,7 @@ public class EndMenu extends MouseAdapter {
 
 	// Play button
 	private Rectangle continueBtn; // Play Button
-	private String continueTxt = "Play Again ?";
+	private String continueTxt = "Play Again";
 	private boolean cHighlight = false; // true if the mouse hovered over the Play button
 
 	// Quit button
@@ -40,9 +40,6 @@ public class EndMenu extends MouseAdapter {
 	{
 
 		active1 = false;
-		if (active1 == false) {
-			game.start();
-		}
 		
 		if (active1 == true) //the game will start when active is set to true and thus the end menu is activated
 		{
@@ -64,7 +61,7 @@ public class EndMenu extends MouseAdapter {
 		x = Game.WIDTH * 3 / 4 - w / 2;
 		quitBtn = new Rectangle(x, y, w, h);
 
-		font = new Font("Roboto", Font.PLAIN, 75);
+		font = new Font("Roboto", Font.PLAIN, 50);
 	}
 
 	/**

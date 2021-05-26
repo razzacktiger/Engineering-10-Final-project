@@ -193,6 +193,9 @@ public class Game extends Canvas implements Runnable {
 		if (rightPaddle.getPoint() == 11 || leftPaddle.getPoint() == 11) {
 			 endMenu.active1 = true;
 			 endMenu.draw(g);
+			 rightPaddle.setScore(0);
+			 leftPaddle.setScore(0);
+			 
 			
 		}
 

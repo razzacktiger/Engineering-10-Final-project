@@ -46,6 +46,9 @@ public class Paddle {
 	public void addPoint() {
 		score++;
 	}
+	public void setScore(int points) {
+		score = points;
+	}
 	
 	public int getScore() {
 		return score;

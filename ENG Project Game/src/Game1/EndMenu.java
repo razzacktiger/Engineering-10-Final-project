@@ -64,7 +64,7 @@ public class EndMenu extends MouseAdapter {
 		x = Game.WIDTH * 3 / 4 - w / 2;
 		quitBtn = new Rectangle(x, y, w, h);
 
-		font = new Font("Roboto", Font.PLAIN, 100);
+		font = new Font("Roboto", Font.PLAIN, 75);
 	}
 
 	/**

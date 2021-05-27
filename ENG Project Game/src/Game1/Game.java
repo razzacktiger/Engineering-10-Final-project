@@ -47,7 +47,7 @@ public class Game extends Canvas implements Runnable {
 
 		canvasSetup();
 
-		new Window("Simple Pong", this);
+		new Window("Not So Simple Pong", this);
 
 		initialise();
 

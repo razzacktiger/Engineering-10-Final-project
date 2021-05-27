@@ -18,7 +18,9 @@ public class Paddle {
 	private int width = 22, height = 85; // dimensions
 	private int score = 0; // score for the player
 	private Color color; // color of the paddle
-	private boolean left; // true if it's the left paddle
+	private boolean left;
+	private boolean right;
+	private boolean middle;// true if it's the left paddle
 
 	/**
 	 * create initial properties for the paddle
@@ -26,15 +28,19 @@ public class Paddle {
 	 * @param color - color of the paddle
 	 * @param left  - boolean to know if it's the left paddle or not
 	 */
-	public Paddle(Color c, boolean left) {
+	public Paddle(Color c, boolean left, boolean middle, boolean right) {
 		// initial properties
 		color = c;
 		this.left = left;
+		this.right = right;
+		this.middle = middle;
 
 		if (left) // different x values if right or left paddle
 			x = 0;
-		else
+		if (right)
 			x = Game.WIDTH - width;
+		if (middle)
+			x = Game.WIDTH/2 - width/2;
 
 		y = Game.HEIGHT / 2 - height / 2;
 
@@ -68,20 +74,27 @@ public class Paddle {
 		// draw score
 		int sx; // x position of the string
 		int padding = 25; // space between dotted line and score
-		String scoreText = Integer.toString(score);
-		Font font = new Font("Roboto", Font.PLAIN, 50);
-
+		//*** made the score show up only for left or right paddles
 		if (left) {
+			String scoreText = Integer.toString(score);
+			Font font = new Font("Roboto", Font.PLAIN, 50);
 			int strWidth = g.getFontMetrics(font).stringWidth(scoreText); 
 			// we need the width of the string so we can
 			// center it properly (for perfectionists)
 			sx = Game.WIDTH / 2 - padding - strWidth;
-		} else {
+			g.setFont(font);
+			g.drawString(scoreText, sx, 50);
+		} 
+		if (right) {
+			String scoreText = Integer.toString(score);  
+			Font font = new Font("Roboto", Font.PLAIN, 50);
 			sx = Game.WIDTH / 2 + padding;
+			g.setFont(font);
+			g.drawString(scoreText, sx, 50);
 		}
-
-		g.setFont(font);
-		g.drawString(scoreText, sx, 50);
+			
+		
+		
 	}
 
 	/**
@@ -103,14 +116,40 @@ public class Paddle {
 			if (ballX <= width + x && ballY + Ball.SIZE >= y && ballY <= y + height)
 				b.changeXDir();
 
-		} else {
+		} if (right) {
 
 			if (ballX + Ball.SIZE >= x && ballY + Ball.SIZE >= y && ballY <= y + height)
 				b.changeXDir();
+		  
 
 		}
 
 	}
+	public void updateObstacle(Ball b) {
+		int ballX = b.getX();
+		int ballY = b.getY();
+		y = Game.ensureRange(y + vel, 0, Game.HEIGHT - height);
+		vel = 1;
+		if (middle) {
+		y += vel * speed;
+		if (y + height >= Game.HEIGHT) {
+			vel = -10;
+			y += vel * speed;
+		}
+		if (y <= 0) {
+			vel = -1;
+			y += vel * speed;
+		}
+		
+		if (middle) {
+			  if (ballX + Ball.SIZE <= x + width/2 && ballY + Ball.SIZE >= y && ballY <= y + height)
+					b.changeXDir();
+		  }
+		
+		}
+}
+		
+		
 
 	/**
 	 * switches the direction

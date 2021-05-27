@@ -35,6 +35,7 @@ public class Game extends Canvas implements Runnable {
 	// video) are bad property names
 	private Paddle leftPaddle;
 	private Paddle rightPaddle;
+	private Paddle middlePaddle;
 
 	public MainMenu menu;//Main Menu object
 	public EndMenu endMenu;// End Menu object
@@ -69,9 +70,9 @@ public class Game extends Canvas implements Runnable {
 		ball2 = new Ball();
 
 		// Initialize paddle objects
-		leftPaddle = new Paddle(Color.green, true);
-		rightPaddle = new Paddle(Color.red, false);
-
+		leftPaddle = new Paddle(Color.green, true, false, false);
+		rightPaddle = new Paddle(Color.red, false, false, true);
+		middlePaddle = new Paddle(Color.blue, false, true, false);
 		// initialize main menu
 		menu = new MainMenu(this);
 		endMenu = new EndMenu(this);
@@ -188,16 +189,15 @@ public class Game extends Canvas implements Runnable {
 		drawBackground(g);
 
 		// draw main menu contents
-		if (menu.active)
+		if (menu.active) {
 			menu.draw(g);
-		if (rightPaddle.getPoint() == 11 || leftPaddle.getPoint() == 11) {
-			 endMenu.active1 = true;
-			 endMenu.draw(g);
-			 rightPaddle.setScore(0);
-			 leftPaddle.setScore(0);
-			 
-			
 		}
+		if (endMenu.active1) 
+		{
+			 endMenu.draw(g);
+		}
+		
+		
 
 		// draw ball
 		ball1.draw(g);
@@ -206,6 +206,7 @@ public class Game extends Canvas implements Runnable {
 		// draw paddles (score will be drawn with them)
 		leftPaddle.draw(g);
 		rightPaddle.draw(g);
+		middlePaddle.draw(g);
 		
 
 		// actually draw
@@ -247,16 +248,26 @@ public class Game extends Canvas implements Runnable {
 			// update paddles (movements)
 			leftPaddle.update(ball1);
 			rightPaddle.update(ball1);
-			
+			middlePaddle.updateObstacle(ball1);
 			ball2.update(leftPaddle, rightPaddle);
 
 			// update paddles (movements)
 			leftPaddle.update(ball2);
 			rightPaddle.update(ball2);
 			
+			middlePaddle.updateObstacle(ball2);
+			if ((rightPaddle.getPoint() >= 11 || leftPaddle.getPoint() >= 11)) {
+				endMenu.active1 = true;
+			}
+		}
+			
+			//public boolean checkScore() {
+				//if ((rightPaddle.getPoint() == 11 || leftPaddle.getPoint() == 11)) {
+					//endMenu.active1 = true;
+				//return true;
 			// with ceiling and floor
 			
-		    }
+		    //}
 	}
 
 	/**

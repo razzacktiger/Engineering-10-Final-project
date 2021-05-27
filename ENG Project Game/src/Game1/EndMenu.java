@@ -39,8 +39,7 @@ public class EndMenu extends MouseAdapter {
 	public EndMenu(Game game) 
 	{
 
-		active1 = false;
-		
+		active1 = false; 
 		if (active1 == true) //the game will start when active is set to true and thus the end menu is activated
 		{
 			game.stop();
@@ -119,11 +118,11 @@ public class EndMenu extends MouseAdapter {
 		if (continueBtn.contains(p))
 			active1 = false;
 		    
+		    
 		else if (quitBtn.contains(p))
 			System.exit(0);
 		
-			rightPaddle.setScore(0);
-			leftPaddle.setScore(0);
+			
 	}
 
 	@Override

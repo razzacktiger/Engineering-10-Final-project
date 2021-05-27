@@ -50,7 +50,7 @@ public class Ball {
 	 */
 	public void draw(Graphics g) {
 		g.setColor(Color.white);
-		g.fillRect(x, y, SIZE, SIZE);
+		g.drawOval(x, y, SIZE, SIZE);
 	}
 
 	/**

@@ -6,7 +6,7 @@ import javax.swing.JFrame;
  * window class
  * 
  * ***Original coder Zayed, modified by Haroon & Hunter
- *
+ * ***We mostly Left this class alone.
  */
 public class Window {
 

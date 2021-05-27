@@ -16,11 +16,13 @@ public class Ball {
 	private int x, y; // position of top left corner of square
 	private int xVel, yVel; // either 1 or -1
 	private int speed; // speed of the ball
+	
 
 	/**
 	 * constructor
 	 */
 	public Ball() {
+		
 		reset();
 	}
 
@@ -49,6 +51,7 @@ public class Ball {
 	 * @param g: Graphics object used to draw everything
 	 */
 	public void draw(Graphics g) {
+		///* instead of a square we chnaged it to a circle.
 		g.setColor(Color.white);
 		g.fillOval(x, y, SIZE, SIZE);
 		

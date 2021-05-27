@@ -12,8 +12,9 @@ import java.awt.image.BufferStrategy;
 /**
  * class that manages the game, drawing and updating physics
  * 
- *  ***Original coder Zayed, modified by Haroon & Hunter
- *
+ *  *** Original coder Zayed, modified by Haroon & Hunter
+ *  *** Three asterisks or stars such as "***" in the comments denote Haroon and Hunter's comments/modifications
+ *  *** Also, the position, x,y 
  */
 public class Game extends Canvas implements Runnable {
 
@@ -27,18 +28,17 @@ public class Game extends Canvas implements Runnable {
 
 	// ball object -> the thing that bounces on the walls and paddles
 	private Ball ball1;
-	private Ball ball2;
+	private Ball ball2; //*** created a second Ball object to make the game a bit more fun.
 
 	// the paddles
-	// I changed the names of the paddles
-	// property names should be significant, paddle1 and paddle2 (like I did in the
-	// video) are bad property names
+	
 	private Paddle leftPaddle;
 	private Paddle rightPaddle;
+	//***added a third middle Paddle or Obstacle object
 	private Paddle middlePaddle;
 
 	public MainMenu menu;//Main Menu object
-	public EndMenu endMenu;// End Menu object
+	public EndMenu endMenu;//*** End Menu object
 
 	/**
 	 * constructor
@@ -54,6 +54,7 @@ public class Game extends Canvas implements Runnable {
 		this.addKeyListener(new KeyInput(leftPaddle, rightPaddle));
 		this.addMouseListener(menu);
 		this.addMouseMotionListener(menu);
+		//*** listening for the end Menu as well
 		this.addMouseListener(endMenu);
 		this.addMouseMotionListener(endMenu);
 		this.setFocusable(true);
@@ -75,6 +76,7 @@ public class Game extends Canvas implements Runnable {
 		middlePaddle = new Paddle(Color.blue, false, true, false);
 		// initialize main menu
 		menu = new MainMenu(this);
+		//*** 
 		endMenu = new EndMenu(this);
 	}
 
@@ -192,6 +194,7 @@ public class Game extends Canvas implements Runnable {
 		if (menu.active) {
 			menu.draw(g);
 		}
+		//*** draw end menu components
 		if (endMenu.active1) 
 		{
 			 endMenu.draw(g);
@@ -240,7 +243,7 @@ public class Game extends Canvas implements Runnable {
 	 * update settings and move all objects
 	 */
 	public void update() {
-
+        //*** 
 		if (!menu.active && !endMenu.active1) {
 			// update ball (movements)
 			ball1.update(leftPaddle, rightPaddle);
@@ -254,8 +257,11 @@ public class Game extends Canvas implements Runnable {
 			// update paddles (movements)
 			leftPaddle.update(ball2);
 			rightPaddle.update(ball2);
-			
+			//*** We execute the update function for the middle paddle.
 			middlePaddle.updateObstacle(ball2);
+			/* ***Checking if either paddle reaches a score past 11. 
+			   Once that occurs, all positons and score are resent 
+			   and the end menu sets to true and thus appears */
 			if ((rightPaddle.getPoint() >= 11 || leftPaddle.getPoint() >= 11)) {
 				rightPaddle.setScore(0);
 				leftPaddle.setScore(0);
@@ -268,13 +274,14 @@ public class Game extends Canvas implements Runnable {
 			}
 		}
 			
-			//public boolean checkScore() {
-				//if ((rightPaddle.getPoint() == 11 || leftPaddle.getPoint() == 11)) {
-					//endMenu.active1 = true;
-				//return true;
-			// with ceiling and floor
-			
-		    //}
+			/*
+			 * 	//***this contains some failed code				
+			 * public boolean checkScore() {
+				if ((rightPaddle.getPoint() == 11 || leftPaddle.getPoint() == 11)) {
+					endMenu.active1 = true;
+				return true;
+				}
+					*/
 	}
 
 	/**

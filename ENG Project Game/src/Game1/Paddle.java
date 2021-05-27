@@ -8,7 +8,7 @@ import java.awt.Graphics;
  * class for the paddle
  * 
  * ***Original coder Zayed, modified by Haroon & Hunter
- *
+ * 
  */
 public class Paddle {
 
@@ -33,16 +33,19 @@ public class Paddle {
 		color = c;
 		this.left = left;
 		this.right = right;
+		//*** added middle in the constructor
 		this.middle = middle;
 
 		if (left) // different x values if right or left paddle
 			x = 0;
 		if (right)
 			x = Game.WIDTH - width;
+		//middle paddle has it's own positon as well
 		if (middle) {
 			x = Game.WIDTH/2 - width/2;
 			vel = 2;
 		}
+		// all obstacles/paddles will have the same y positon 
 		y = Game.HEIGHT / 2 - height / 2;
 
 	}
@@ -126,6 +129,11 @@ public class Paddle {
 		}
 
 	}
+	/* ***created an updateObstacle method/function for 
+     * the middle paddle which is used to update it's 
+     * oscillating position as well as fill in the logic for
+     * its collisions. 
+	*/
 	public void updateObstacle(Ball b) 
 	{
 		 
@@ -139,7 +147,7 @@ public class Paddle {
 			if (y + height >= Game.HEIGHT || y <= 0) 
 			{
 				//System.out.print("changing  direction "+y);
-				changeDir();
+				changeDir();   
 				y += vel * speed;
 				//System.out.print("New y"+y);
 			}
@@ -148,7 +156,9 @@ public class Paddle {
 		}
 		
 	}
-
+    /* ***created a rest position function for 
+     * the paddle which is used when the end menu pops up.
+	*/
 	public void reset() {
 		// initial position
 		if (left) // different x values if right or left paddle
@@ -161,16 +171,15 @@ public class Paddle {
 
 	}	
 		
-
+	//*** simple function we made for oscilating velocities for the middle paddle.
+	public void changeDir() {
+		vel *= -1;
+	}
 	/**
 	 * switches the direction
 	 * 
 	 * @param direction - -1 for up and 1 for down
 	 */
-	
-	public void changeDir() {
-		vel *= -1;
-	}
 	public void switchDirections(int direction) {
 		vel = speed * direction;
 	}

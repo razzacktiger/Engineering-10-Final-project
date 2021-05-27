@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
  * the main menu at the start of the game
  * 
  * ***Original coder Zayed, modified by Haroon & Hunter
+ * ***We mostly Left this class alone.
  *
  */
 public class MainMenu extends MouseAdapter {

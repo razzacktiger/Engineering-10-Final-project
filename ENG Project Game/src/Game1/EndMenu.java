@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 /**
  * New class created for additional End Game menu in the game
  * 
- * ***Template borrowed from Original coder Zayed, 
+ * ***New Class created based on Template borrowed from Original coder Zayed, 
  * modified by Haroon & Hunter
  *
  */
@@ -19,9 +19,9 @@ public class EndMenu extends MouseAdapter {
     public boolean active1; // true if main menu is displaying
 
 	// Play button
-	private Rectangle continueBtn; // Play Button
-	private String continueTxt = "Play Again";
-	private boolean cHighlight = false; // true if the mouse hovered over the Play button
+	private Rectangle continueBtn; //*** continue Button
+	private String continueTxt = "Play Again"; 
+	private boolean cHighlight = false; //*** true if the mouse hovered over the Play button
 
 	// Quit button
 	private Rectangle quitBtn; // Quit Button
@@ -38,11 +38,11 @@ public class EndMenu extends MouseAdapter {
 
 	public EndMenu(Game game) 
 	{
-
+		//*** created a seperate active1 variable for Menu activation
 		active1 = false; 
 		if (active1 == true) //the game will start when active is set to true and thus the end menu is activated
 		{
-			game.stop();
+			game.stop(); //game stops 
 			game.update();
 		}
 
@@ -55,7 +55,7 @@ public class EndMenu extends MouseAdapter {
 		y = Game.HEIGHT / 2 - h / 2;
 
 		x = Game.WIDTH / 4 - w / 2;
-		continueBtn = new Rectangle(x, y, w, h);
+		continueBtn = new Rectangle(x, y, w, h); //***
 
 		x = Game.WIDTH * 3 / 4 - w / 2;
 		quitBtn = new Rectangle(x, y, w, h);
@@ -92,7 +92,7 @@ public class EndMenu extends MouseAdapter {
 
 		int strWidth, strHeight;
 
-		// continue Button text
+		// Continue Button text
 		strWidth = g.getFontMetrics(font).stringWidth(continueTxt);
 		strHeight = g.getFontMetrics(font).getHeight();
 
@@ -114,7 +114,7 @@ public class EndMenu extends MouseAdapter {
 	public void mouseClicked(MouseEvent e) {
 
 		Point p = e.getPoint();
-
+        //*** if the continue button is pressed, the End menu closes
 		if (continueBtn.contains(p))
 			active1 = false;
 		    

@@ -14,7 +14,7 @@ public class Paddle {
 
 	private int x, y; // positions
 	private int vel = 0; // speed and direction of paddle
-	private int speed = 10; // speed of the paddle movement
+	private int speed = 5; // speed of the paddle movement
 	private int width = 22, height = 85; // dimensions
 	private int score = 0; // score for the player
 	private Color color; // color of the paddle
@@ -39,9 +39,10 @@ public class Paddle {
 			x = 0;
 		if (right)
 			x = Game.WIDTH - width;
-		if (middle)
+		if (middle) {
 			x = Game.WIDTH/2 - width/2;
-
+			vel = 2;
+		}
 		y = Game.HEIGHT / 2 - height / 2;
 
 	}
@@ -125,30 +126,40 @@ public class Paddle {
 		}
 
 	}
-	public void updateObstacle(Ball b) {
+	public void updateObstacle(Ball b) 
+	{
+		 
 		int ballX = b.getX();
 		int ballY = b.getY();
+		//System.out.print("intitial y "+y);
 		y = Game.ensureRange(y + vel, 0, Game.HEIGHT - height);
-		vel = 1;
-		if (middle) {
-		y += vel * speed;
-		if (y + height >= Game.HEIGHT) {
-			vel = -10;
-			y += vel * speed;
-		}
-		if (y <= 0) {
-			vel = -1;
-			y += vel * speed;
-		}
-		
-		if (middle) {
-			  if (ballX + Ball.SIZE <= x + width/2 && ballY + Ball.SIZE >= y && ballY <= y + height)
+		//System.out.print("updated y "+y);
+		if (middle)
+		{
+			if (y + height >= Game.HEIGHT || y <= 0) 
+			{
+				//System.out.print("changing  direction "+y);
+				changeDir();
+				y += vel * speed;
+				//System.out.print("New y"+y);
+			}
+			if (ballX + Ball.SIZE <= x + width && ballX + Ball.SIZE >= x && ballY + Ball.SIZE >= y && ballY <= y + height)
 					b.changeXDir();
-		  }
-		
 		}
-}
 		
+	}
+
+	public void reset() {
+		// initial position
+		if (left) // different x values if right or left paddle
+			x = 0;
+		if (right)
+			x = Game.WIDTH - width;
+		if (middle)
+			x = Game.WIDTH/2 - width/2;
+		y = Game.HEIGHT / 2 - height / 2;
+
+	}	
 		
 
 	/**
@@ -156,6 +167,10 @@ public class Paddle {
 	 * 
 	 * @param direction - -1 for up and 1 for down
 	 */
+	
+	public void changeDir() {
+		vel *= -1;
+	}
 	public void switchDirections(int direction) {
 		vel = speed * direction;
 	}

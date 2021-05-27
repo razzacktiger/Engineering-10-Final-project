@@ -257,6 +257,13 @@ public class Game extends Canvas implements Runnable {
 			
 			middlePaddle.updateObstacle(ball2);
 			if ((rightPaddle.getPoint() >= 11 || leftPaddle.getPoint() >= 11)) {
+				rightPaddle.setScore(0);
+				leftPaddle.setScore(0);
+				middlePaddle.reset();
+				ball1.reset();
+				ball2.reset();
+				rightPaddle.reset();
+				leftPaddle.reset();
 				endMenu.active1 = true;
 			}
 		}

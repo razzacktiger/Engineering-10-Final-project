@@ -27,7 +27,7 @@ public class Ball {
 	/**
 	 * setup initial position and velocity
 	 */
-	private void reset() {
+	public void reset() {
 		// initial position
 		x = Game.WIDTH / 2 - SIZE / 2;
 		y = Game.HEIGHT / 2 - SIZE / 2;
@@ -40,7 +40,7 @@ public class Ball {
 		yVel = Game.sign(Math.random() * 2.0 - 1);
 		
 		//*** adjusted initial random speed
-		speed = (int) (Math.random()*6 + 4);
+		speed = (int) (Math.random()*5 + 3);
 	}
 
 	/**
@@ -50,7 +50,8 @@ public class Ball {
 	 */
 	public void draw(Graphics g) {
 		g.setColor(Color.white);
-		g.drawOval(x, y, SIZE, SIZE);
+		g.fillOval(x, y, SIZE, SIZE);
+		
 	}
 
 	/**
@@ -95,6 +96,7 @@ public class Ball {
 	/**
 	 * @return the y
 	 */
+	
 	public int getY() {
 		return y;
 	}

@@ -131,7 +131,7 @@ public class Paddle {
 		 
 		int ballX = b.getX();
 		int ballY = b.getY();
-		//System.out.print("intitial y "+y);
+		//System.out.print("initial y "+y);
 		y = Game.ensureRange(y + vel, 0, Game.HEIGHT - height);
 		//System.out.print("updated y "+y);
 		if (middle)
@@ -143,7 +143,7 @@ public class Paddle {
 				y += vel * speed;
 				//System.out.print("New y"+y);
 			}
-			if (ballX + Ball.SIZE <= x + width && ballX + Ball.SIZE >= x && ballY + Ball.SIZE >= y && ballY <= y + height)
+			if (ballX + Ball.SIZE <= x + width && ballX + Ball.SIZE >= x + width/2 && ballY + Ball.SIZE >= y && ballY <= y + height)
 					b.changeXDir();
 		}
 		
